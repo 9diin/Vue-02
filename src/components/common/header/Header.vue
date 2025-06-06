@@ -1,58 +1,34 @@
 <template>
     <header class="header">
-        <div class="header__child">
-            <Avatar class="rounded-sm">
-                <AvatarImage src="/assets/images/logo.png" alt="profile" />
-                <AvatarFallback>CN</AvatarFallback>
-            </Avatar>
-            <h3 class="scroll-m-20 text-2xl font-semibold tracking-tight">Do it!</h3>
-        </div>
-        <div class="header__child">
-            <Button variant="secondary" @click="moveToBookmarkPage">
-                <BookMarked class="h-5 w-5 mr-1" />
-                북마크
-            </Button>
-            <Separator orientation="vertical" class="h-10" />
-            <div class="flex items-center gap-2">
-                <Avatar>
-                    <AvatarImage src="/assets/images/profile.svg" alt="profile" />
-                    <AvatarFallback>CN</AvatarFallback>
-                </Avatar>
-                <small class="text-sm font-medium leading-none">9Diin | Do it Vue.js</small>
+        <div class="header__start">
+            <div class="header__start__logo">
+                <img src="/assets/images/logo.svg" alt="" />
+                <h3 class="poppins-bold scroll-m-20 text-2xl font-semibold tracking-tight text-neutral-700">Weather.io</h3>
+            </div>
+            <div class="flex-1">
+                <SearchBar @update:model-value="changeSearchValue" @keydown.enter="handleSearch" />
             </div>
         </div>
     </header>
 </template>
 
-<script lang="ts">
-import { defineComponent } from "vue";
-import { useRouter } from "vue-router";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Button } from "@/components/ui/button";
-import { Separator } from "@/components/ui/separator";
-import { BookMarked } from "lucide-vue-next";
+<script setup lang="ts">
+import SearchBar from "@/components/ui/search-bar/SearchBar.vue";
+import { useStore } from "@/store";
+import { ref } from "vue";
 
-export default defineComponent({
-    name: "CommonHeader",
-    components: {
-        Avatar,
-        AvatarFallback,
-        AvatarImage,
-        Button,
-        BookMarked,
-        Separator,
-    },
-    data() {
-        return {
-            router: useRouter(),
-        };
-    },
-    methods: {
-        moveToBookmarkPage() {
-            this.router.push("/bookmarks"); // 북마크 페이지로 이동
-        },
-    },
-});
+const store = useStore();
+const searchValue = ref<string>("");
+
+const changeSearchValue = (event: string | number) => {
+    searchValue.value = String(event);
+};
+const handleSearch = () => {
+    if (searchValue.value === "") store.cityName = "seoul";
+    else store.cityName = searchValue.value;
+
+    store.fetchApi();
+};
 </script>
 
 <style lang="scss" scoped>
@@ -61,20 +37,30 @@ export default defineComponent({
 
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-start;
 
-    padding: 8px 24px;
+    padding: 20px 24px;
 
-    border-bottom: 1px solid $color-neutral-100;
-
-    &__child {
-        height: 100%;
+    &__start {
+        width: 50%;
 
         display: flex;
         align-items: center;
-        justify-content: center;
+        justify-content: flex-start;
 
-        gap: 12px;
+        gap: 20px;
+
+        &__logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            gap: 4px;
+
+            img {
+                height: 44px;
+            }
+        }
     }
 }
 </style>

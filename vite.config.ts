@@ -1,21 +1,22 @@
-import path from "path";
-import { defineConfig } from "vite";
-import vue from "@vitejs/plugin-vue";
+import { fileURLToPath, URL } from "node:url";
 
-// https://vitejs.dev/config/
+import vue from "@vitejs/plugin-vue";
+import autoprefixer from "autoprefixer";
+
+import tailwind from "tailwindcss";
+import { defineConfig } from "vite";
+
+// https://vite.dev/config/
 export default defineConfig({
+    css: {
+        postcss: {
+            plugins: [tailwind(), autoprefixer()],
+        },
+    },
     plugins: [vue()],
     resolve: {
         alias: {
-            "@": path.resolve(__dirname, "./src"),
-        },
-    },
-    css: {
-        preprocessorOptions: {
-            scss: {
-                additionalData: `@import "@/assets/styles/main.scss";`,
-                api: "modern-compiler", // or "modern"
-            },
+            "@": fileURLToPath(new URL("./src", import.meta.url)),
         },
     },
 });

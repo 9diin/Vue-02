@@ -1,0 +1,42 @@
+[
+    {
+        "cityName": "seoul",
+        "lat": 37.5683,
+        "lng": 126.9778
+    },
+    {
+        "cityName": "incheon",
+        "lat": 37.4562557,
+        "lng": 126.7052062
+    },
+    {
+        "cityName": "gwangju",
+        "lat": 35.1599785,
+        "lng": 126.8513072
+    },
+    {
+        "cityName": "daejeon",
+        "lat": 36.3504567,
+        "lng": 127.3848187
+    },
+    {
+        "cityName": "cheongju",
+        "lat": 36.6358093,
+        "lng": 127.4913338
+    },
+    {
+        "cityName": "daegu",
+        "lat": 35.8715411,
+        "lng": 128.601505
+    },
+    {
+        "cityName": "ulsan",
+        "lat": 35.5396224,
+        "lng": 129.3115276
+    },
+    {
+        "cityName": "busan",
+        "lat": 35.179665,
+        "lng": 129.0747635
+    }
+]
