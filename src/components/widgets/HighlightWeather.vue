@@ -134,16 +134,14 @@ import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/com
 import { toRefs } from "vue";
 
 interface HighlightData {
+    minTemp: number;
+    maxTemp: number;
     sunrise: string;
     sunset: string;
-    moonrise: string;
-    moonset: string;
     humidity: number;
     pressure: number;
     visibility: number;
     feelsLike: number;
-    minTemp: number;
-    maxTemp: number;
 }
 
 const props = defineProps<{ data: HighlightData }>();
