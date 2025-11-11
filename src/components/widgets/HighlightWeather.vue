@@ -6,32 +6,33 @@
         </CardHeader>
         <CardContent class="flex flex-col gap-5">
             <div class="flex items-center gap-5">
-                <!-- 해양 및 조수 데이터 위젯 -->
-                <Card class="w-full bg-neutral-100">
+                <!-- 최저/최고 기온 데이터 위젯 -->
+                <Card class="w-full h-fit bg-neutral-50">
                     <CardHeader>
                         <CardDescription class="font-semibold text-neutral-700">
-                            해양 및 조수 데이터
-                            <span class="text-neutral-400 font-normal ml-1">Marine and Sailing</span>
+                            최저/최고 기온
+                            <span class="text-neutral-400 font-normal ml-1">Min & Max Temperature</span>
                         </CardDescription>
                     </CardHeader>
-                    <CardContent class="w-full flex items-center justify-between">
-                        <img src="/assets/images/waves.png" alt="" class="h-14" />
-                        <div class="w-fit grid grid-cols-4 gap-3">
-                            <div class="flex flex-col items-center">
-                                <p class="text-sm text-muted-foreground">1회 - 만조</p>
-                                <p class="poppins-medium scroll-m-20 text-lg font-semibold tracking-tight">{{ data.moonset }}</p>
+                    <CardContent class="grid grid-cols-2 items-center">
+                        <div class="w-full flex items-center gap-2">
+                            <img src="/assets/images/minTemp.png" alt="" class="h-14" />
+                            <div class="flex flex-col">
+                                <p class="text-sm text-muted-foreground">최저 기온</p>
+                                <p class="poppins-medium scroll-m-20 text-3xl font-semibold tracking-tight flex items-start">
+                                    {{ data.minTemp }}
+                                    <span class="text-lg ml-[2px] -mt-[2px]">&#8451;</span>
+                                </p>
                             </div>
-                            <div class="flex flex-col items-center">
-                                <p class="text-sm text-muted-foreground">2회 - 간조</p>
-                                <p class="poppins-medium scroll-m-20 text-lg font-semibold tracking-tight">{{ data.sunrise }}</p>
-                            </div>
-                            <div class="flex flex-col items-center">
-                                <p class="text-sm text-muted-foreground">3회 - 만조</p>
-                                <p class="poppins-medium scroll-m-20 text-lg font-semibold tracking-tight">{{ data.moonrise }}</p>
-                            </div>
-                            <div class="flex flex-col items-center">
-                                <p class="text-sm text-muted-foreground">4회 - 간조</p>
-                                <p class="poppins-medium scroll-m-20 text-lg font-semibold tracking-tight">{{ data.sunset }}</p>
+                        </div>
+                        <div class="w-full flex items-center gap-2">
+                            <img src="/assets/images/maxTemp.png" alt="" class="h-14" />
+                            <div class="flex flex-col">
+                                <p class="text-sm text-muted-foreground">최고 기온</p>
+                                <p class="poppins-medium scroll-m-20 text-3xl font-semibold tracking-tight flex items-start">
+                                    {{ data.maxTemp }}
+                                    <span class="text-lg ml-[2px] -mt-[2px]">&#8451;</span>
+                                </p>
                             </div>
                         </div>
                     </CardContent>
@@ -141,6 +142,8 @@ interface HighlightData {
     pressure: number;
     visibility: number;
     feelsLike: number;
+    minTemp: number;
+    maxTemp: number;
 }
 
 const props = defineProps<{ data: HighlightData }>();
