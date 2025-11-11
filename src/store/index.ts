@@ -18,7 +18,7 @@ export const useStore = defineStore("main", {
         cityName: "seoul",
         dataOfCW: { temp: 0, country: "", cityName: "", localtime: "", iconCode: 0, iconUrl: "" },
         dataOfHW: [],
-        dataOfHLW: { sunrise: "", sunset: "", moonrise: "", moonset: "", humidity: 0, pressure: 0, visibility: 0, feelsLike: 0 },
+        dataOfHLW: { sunrise: "", sunset: "", moonrise: "", moonset: "", humidity: 0, pressure: 0, visibility: 0, feelsLike: 0, minTemp: 0, maxTemp: 0 },
         dataOf7DW: [],
     }),
     actions: {
@@ -51,6 +51,8 @@ export const useStore = defineStore("main", {
                 this.dataOfHLW.pressure = current.pressure_mb;
                 this.dataOfHLW.visibility = current.vis_km;
                 this.dataOfHLW.feelsLike = current.feelslike_c;
+                this.dataOfHLW.maxTemp = forecast.forecastday[0].day.maxtemp_c;
+                this.dataOfHLW.minTemp = forecast.forecastday[0].day.mintemp_c;
 
                 /** WidgetOneWeekWeather 컴포넌트에서 필요한 데이터 */
                 this.dataOf7DW = forecast.forecastday.map((item: ForecastDay) => {
